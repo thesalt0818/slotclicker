@@ -3,17 +3,30 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Cocos Creator | SlotClicker</title>
+  <!-- 홈 화면에 추가했을 때 아이콘 아래 뜨는 이름이라 "Cocos Creator |" 접두사를 뺐다 -->
+  <title>SlotClicker</title>
 
   <!--http://www.html5rocks.com/en/mobile/mobifying/-->
+  <!-- viewport-fit=cover: 노치·홈 인디케이터 영역까지 화면을 채운다 (엔진 기본 템플릿에는 없다) -->
   <meta name="viewport"
-        content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true"/>
+        content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1,minimal-ui=true,viewport-fit=cover"/>
 
   <!--https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html-->
+  <!-- ⚠️ iOS 사파리는 전체화면 API가 없다. 주소창을 없애는 유일한 방법이
+       "홈 화면에 추가"로 standalone 실행하는 것이고, 그걸 켜는 것이 아래 두 태그다 -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SlotClicker">
   <meta name="format-detection" content="telephone=no">
+
+  <!-- 안드로이드 크롬 주소창·상태바 색 (전체화면 진입 전 잠깐 보이는 구간을 게임 톤에 맞춘다) -->
+  <meta name="theme-color" content="#333333">
+
+  <!-- 홈 화면 아이콘. 이 파일은 build-templates/web-mobile/ 에서 그대로 복사된다 -->
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+  <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png"/>
+  <link rel="icon" href="apple-touch-icon.png"/>
 
   <!-- force webkit on 360 -->
   <meta name="renderer" content="webkit"/>
@@ -31,10 +44,20 @@
   <!--<meta name="browsermode" content="application">-->
   <meta name="x5-page-mode" content="app">
 
-  <!--<link rel="apple-touch-icon" href=".png" />-->
-  <!--<link rel="apple-touch-icon-precomposed" href=".png" />-->
-
   <link rel="stylesheet" type="text/css" href="style.css"/>
+
+  <!-- ⚠️ style.css를 덮어쓰지 않고 여기에 인라인으로 둔다.
+       md5 캐시를 켜면 생성되는 css 파일 이름이 style.<hash>.css로 바뀌어
+       build-templates의 style.css가 아무 데도 쓰이지 않기 때문이다. -->
+  <style>
+    /* 당겨서 새로고침·고무줄 스크롤 차단 — 슬롯을 연타하다 화면이 튀거나
+       안드로이드에서 페이지가 새로고침되는 것을 막는다 */
+    html, body {
+      overscroll-behavior: none;
+      touch-action: none;
+      background-color: #333;
+    }
+  </style>
 
 </head>
 <body>
